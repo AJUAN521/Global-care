@@ -1,0 +1,32 @@
+.form-card {
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 1rem;
+}
+
+.result-card {
+  margin: 20px auto;
+  max-width: 600px;
+  background-color: #f8f9fa;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.radio-group {
+  margin-top: 1rem;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.total {
+  font-size: 1.2rem;
+  color: #2e7d32;
+}

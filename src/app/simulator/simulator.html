@@ -1,0 +1,63 @@
+<mat-card class="sim-card">
+  <mat-card-title>Simulador de aportes - Trabajador independiente 🇨🇴</mat-card-title>
+  <mat-card-subtitle>Pensión, EPS y ARL</mat-card-subtitle>
+
+  <div class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Ingreso mensual (COP)</mat-label>
+      <input matInput type="number" [(ngModel)]="ingreso" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Salario mínimo (COP)</mat-label>
+      <input matInput type="number" [(ngModel)]="salarioMinimo" />
+    </mat-form-field>
+  </div>
+
+  <div class="radio-group">
+    <label>Porcentaje IBC:</label>
+    <mat-radio-group [(ngModel)]="porcentajeIBC" class="radio-inline">
+      <mat-radio-button [value]="0.4">40% (recomendado)</mat-radio-button>
+      <mat-radio-button [value]="1">100% (manual)</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <label>Nivel de riesgo ARL</label>
+    <mat-select [(ngModel)]="nivelRiesgo">
+      <mat-option *ngFor="let r of nivelesARL" [value]="r.nivel">{{ r.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- <mat-slide-toggle [(ngModel)]="aplicarTopes">Aplicar topes según reforma</mat-slide-toggle> -->
+
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="calcular()">Calcular</button>
+  </div>
+</mat-card>
+
+<mat-card class="result-card" *ngIf="resultado as r">
+  <mat-card-title>Resultado</mat-card-title>
+  <mat-card-content>
+    <p><strong>Ingreso:</strong> {{ r.ingresoMensual | currency:'COP':'symbol-narrow' }}</p>
+    <p><strong>IBC usado ({{ r.porcentajeIBC * 100 }}%):</strong> {{ r.IBC_usado | currency:'COP':'symbol-narrow' }}</p>
+    <p><strong>Aporte pensión (16%):</strong> {{ r.aportePension | currency:'COP':'symbol-narrow' }}</p>
+    <p><strong>Aporte salud:</strong> {{ r.aporteEPS | currency:'COP':'symbol-narrow' }}</p>
+    <p><strong>Aporte ARL:</strong> {{ r.aporteARL | currency:'COP':'symbol-narrow' }}</p>
+    <p><strong>Total a pagar:</strong> {{ r.totalAportes | currency:'COP':'symbol-narrow' }}</p>
+
+    <div *ngIf="r.desglose">
+      <p><strong>Desglose:</strong></p>
+      <ul>
+        <li>Público: {{ r.desglose.aporte_publico | currency:'COP':'symbol-narrow' }}</li>
+        <li>Excedente: {{ r.desglose.aporte_excedente | currency:'COP':'symbol-narrow' }}</li>
+      </ul>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <ul class="notas">
+      <li *ngFor="let n of r.notas">{{ n }}</li>
+    </ul>
+  </mat-card-content>
+</mat-card>

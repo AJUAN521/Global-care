@@ -1,0 +1,139 @@
+<header>
+  <nav>
+    <div class="container-img">
+      <img src="../../assets/images/logoglobal.png" alt="" />
+    </div>
+    <ul>
+      <li class="navItem"><a href="">Como funciona</a></li>
+      <li class="navItem"><a href="">Beneficios</a></li>
+      <li class="navItem"><a href="">Aportes salud</a></li>
+      <li class="navItem"><a href="">Aportes pension</a></li>
+    </ul>
+    <button (click)="loginRedirect()">Iniciar sesion</button>
+    <nav></nav>
+  </nav>
+</header>
+<section class="banner">
+  <div class="container-banner">
+    <div class="banner-img">
+      <img src="../../assets/images/banner-img.png" alt="" />
+    </div>
+    <div class="banner-info">
+      <h2>Que un imprevisto no te quite tu tranquilidad</h2>
+      <p>Que emigrar no signifique empezar de cero, en tus derechos laborales y sociales.</p>
+      <button (click)="startNow()">Comienza ahora</button>
+    </div>
+  </div>
+</section>
+<div class="whyPay">
+  <h2>¿Porque es importante hacer tus aportes?</h2>
+  <div class="container">
+    <video width="1000" height="500" controls>
+      <source src="../../assets/multimedia/GLOBAL CARE.mp4" type="video/mp4" />
+      <source src="video.webm" type="video/webm" />
+      Tu navegador no soporta la etiqueta de video.
+    </video>
+  </div>
+</div>
+<section class="howUse">
+  <h2>¿Como realizar el pago de tus aportes?</h2>
+  <div class="container-cards">
+    <div class="card">
+      <!-- <div class="numero">1</div> -->
+      <img src="../../assets/iconos/registerForm.png" class="icono" alt="" />
+      <h3>Registrate</h3>
+      <p>Ingresa tus datos y rellena todos los campos</p>
+      <a href="#" class="btn">Afiliarme ahora</a>
+    </div>
+    <div class="card">
+      <!-- <div class="numero">3</div> -->
+      <img src="../../assets/iconos/download.png" class="icono" alt="" />
+      <h3>Descarga tu planilla</h3>
+      <p>Genera y descarga tu planilla, recuerda verificar tu informacion</p>
+      <a href="#" class="btn">Afiliarme ahora</a>
+    </div>
+    <div class="card">
+      <!-- <div class="numero">3</div> -->
+      <img src="../../assets/iconos/payment.png" class="icono" alt="" />
+      <h3>Paga</h3>
+      <p>Realiza tu pago en una ventanilla de tu banco o por medio de pse.</p>
+      <a href="#" class="btn">Afiliarme ahora</a>
+    </div>
+  </div>
+</section>
+<section class="benefits">
+  <h2>¿Porque elegirnos?</h2>
+  <div class="container">
+    <div class="left">
+      <div class="info">
+        <h2>Para todos</h2>
+        <p>
+          Garantizar acceso justo y universal a la seguridad social Facilitar la afiliación legal a
+          salud, pensión y riesgos laborales, eliminando barreras fronterizas y asegurando que cada
+          trabajador sin importar su procedencia tenga la protección que merece.
+        </p>
+      </div>
+      <div class="info alingRight">
+        <h2>Equidad</h2>
+        <p>
+          Promover la inclusión y la formalización laboral. Reducir la informalidad mediante un
+          sistema digital confiable que integra a migrantes y trabajadores independientes al sistema
+          formal, fortaleciendo la equidad y la estabilidad social.
+        </p>
+      </div>
+      <div class="info">
+        <h2>Innovacion</h2>
+        <p>
+          utilizando la tecnología como una herramienta de transformación que facilite a cada
+          trabajador especialmente a los migrantes afiliarse de forma legal, rápida y sencilla. A
+          través de una plataforma segura, multilingüe y humana, GLOBAL CARE acompaña con empatía y
+          asesoría personalizada, eliminando las barreras que impiden su protección y garantizando
+          una experiencia accesible y digna.
+        </p>
+      </div>
+    </div>
+    <div class="right">
+      <img src="../../assets/images/benefits.png" alt="" />
+    </div>
+  </div>
+</section>
+
+<section class="simulator">
+  <h2>¿Como calcular tus aportes?</h2>
+  <div class="container">
+    <app-simulator></app-simulator>
+  </div>
+</section>
+<footer>
+  <div class="footer-top">
+    <img src="./landing/logoglobal.png" alt="" />
+    <p class="descripcion">
+      Que emigrar no signifique empezar de cero, en tus derechos laborales y sociales.
+    </p>
+    <div class="social">
+      <!-- logos facebook, instagram, whatsapp -->
+      <img
+        width="50"
+        height="50"
+        src="https://img.icons8.com/ios/50/whatsapp--v1.png"
+        alt="whatsapp--v1"
+      />
+      <img
+        width="50"
+        height="50"
+        src="https://img.icons8.com/ios/50/instagram-new--v1.png"
+        alt="instagram-new--v1"
+      />
+    </div>
+  </div>
+
+  <div class="footer-col">
+    <h3>líneas telefónicas</h3>
+    <p>Whatsapp (+57)3008550726</p>
+    <p>Bogotá 6018234069</p>
+  </div>
+
+  <div class="footer-bottom">
+    Línea ética | Políticas de tratamiento de datos | Aviso de privacidad | Términos y condiciones
+  </div>
+</footer>

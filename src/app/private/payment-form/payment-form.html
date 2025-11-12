@@ -1,0 +1,87 @@
+<mat-card class="form-card">
+  <mat-card-title>Planilla de aportes del trabajador independiente</mat-card-title>
+
+  <!-- DATOS PERSONALES -->
+  <mat-divider></mat-divider>
+  <h3>Datos personales</h3>
+  <div class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre completo</mat-label>
+      <input matInput [(ngModel)]="nombre" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo de documento</mat-label>
+      <mat-select [(ngModel)]="tipoDocumento">
+        <mat-option value="CC">Cédula</mat-option>
+        <mat-option value="CE">Cédula de extranjería</mat-option>
+        <mat-option value="NIT">NIT</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Número de documento</mat-label>
+      <input matInput type="number" [(ngModel)]="documento" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput type="email" [(ngModel)]="correo" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono</mat-label>
+      <input matInput type="tel" [(ngModel)]="telefono" />
+    </mat-form-field>
+  </div>
+
+  <!-- DATOS LABORALES -->
+  <mat-divider></mat-divider>
+  <h3>Datos laborales</h3>
+
+  <div class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Ingreso mensual (COP)</mat-label>
+      <input matInput type="number" [(ngModel)]="ingresoMensual" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nivel de riesgo (ARL)</mat-label>
+      <mat-select [(ngModel)]="nivelARL">
+        <mat-option *ngFor="let r of nivelesARL" [value]="r.nivel">
+          {{ r.nombre }} ({{ r.porcentaje * 100 | number:'1.2-2' }}%)
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="radio-group">
+    <label>Porcentaje IBC:</label>
+    <mat-radio-group [(ngModel)]="porcentajeIBC" class="radio-inline">
+      <mat-radio-button [value]="0.4">40% (recomendado)</mat-radio-button>
+      <mat-radio-button [value]="1">100% (manual)</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <mat-slide-toggle [(ngModel)]="aplicarTopes">
+    Aplicar topes según ley
+  </mat-slide-toggle>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="generarPlanilla()">
+      Generar planilla
+    </button>
+  </div>
+</mat-card>
+
+<!-- RESULTADO -->
+<mat-card class="result-card" *ngIf="resultado as r">
+  <mat-card-title>Resultado de aportes</mat-card-title>
+  <mat-card-content>
+    <p><strong>Pensión (16%):</strong> {{ r.pension | currency:'COP':'symbol-narrow' }}</p>
+    <p><strong>EPS (12.5%):</strong> {{ r.eps | currency:'COP':'symbol-narrow' }}</p>
+    <p><strong>ARL:</strong> {{ r.arl | currency:'COP':'symbol-narrow' }}</p>
+    <mat-divider></mat-divider>
+    <p class="total"><strong>Total a pagar:</strong> {{ r.total | currency:'COP':'symbol-narrow' }}</p>
+  </mat-card-content>
+</mat-card>
