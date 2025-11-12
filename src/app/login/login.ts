@@ -7,16 +7,24 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { Header } from "../shared/header/header";
+import { Header } from '../shared/header/header';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterModule, MatFormFieldModule, CommonModule, MatCardModule, FormsModule, MatInputModule, Header],
+  imports: [
+    RouterModule,
+    MatFormFieldModule,
+    CommonModule,
+    MatCardModule,
+    FormsModule,
+    MatInputModule,
+    Header,
+  ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
 export class Login {
-correo = '';
+  correo = '';
   password = '';
 
   constructor(private auth: AuthService, private router: Router, private snack: MatSnackBar) {}
