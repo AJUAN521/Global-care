@@ -16,7 +16,7 @@ export class PdfGeneratorService {
     doc.rect(0, 0, 210, 25, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(18);
-    doc.text('PLANILLA INTEGRADA DE LIQUIDACIÓN DE APORTES (PILA)', 105, 15, { align: 'center' });
+    doc.text('planilla integrada de liquidadcion (PILA)', 105, 15, { align: 'center' });
     doc.setFontSize(11);
     doc.text('Trabajador Independiente - Colombia', 105, 22, { align: 'center' });
 
@@ -28,7 +28,7 @@ export class PdfGeneratorService {
     // ====== DATOS DEL TRABAJADOR ======
     doc.setFontSize(12);
     doc.setFont('helvetica', 'bold');
-    doc.text('1️ DATOS DEL APORTANTE', 10, 45);
+    doc.text('Datos del aportante', 10, 45);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);
 
@@ -50,7 +50,7 @@ export class PdfGeneratorService {
     const afterWorkerTableY = (doc as any).lastAutoTable.finalY + 10;
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(12);
-    doc.text('2️. DATOS LABORALES Y BASE DE COTIZACIÓN', 10, afterWorkerTableY);
+    doc.text('Datos laborales y base de cotizacion', 10, afterWorkerTableY);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);
 
@@ -72,7 +72,7 @@ export class PdfGeneratorService {
     const afterIBC = (doc as any).lastAutoTable.finalY + 10;
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(12);
-    doc.text('3️. DESGLOSE DE APORTES', 10, afterIBC);
+    doc.text('Desglose de aporte', 10, afterIBC);
 
     autoTable(doc, {
       startY: afterIBC + 3,

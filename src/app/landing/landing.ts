@@ -16,14 +16,14 @@ export class Landing {
   constructor(private router: Router) {}
 
   startNow() {
-    this.router.navigate(['payment-form']);
-    /* if (this.user) {
+    if (this.user) {
+      this.router.navigate(['payment-form']);
     } else {
       this.router.navigate(['login']);
-    } */
+    }
   }
 
-  loginRedirect(){
-    this.router.navigate(['login'])
+  loginRedirect() {
+    this.router.navigate(['login']);
   }
 }

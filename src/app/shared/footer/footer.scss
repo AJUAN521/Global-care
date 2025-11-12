@@ -1,0 +1,11 @@
+@use 'variables' as *;
+footer {
+  background-color: $accent_color;
+  color: antiquewhite;
+  padding: 60px 80px;
+  .footer-col {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+  }
+}

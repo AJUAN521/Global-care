@@ -12,10 +12,13 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
 import { PdfGeneratorService } from '../../../services/pdf-generator.service';
+import { Footer } from '../../shared/footer/footer';
+import { Header } from '../../shared/header/header';
 
 @Component({
   selector: 'app-payment-form',
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     FormsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -25,12 +28,14 @@ import { PdfGeneratorService } from '../../../services/pdf-generator.service';
     MatSlideToggleModule,
     MatDividerModule,
     MatRadioModule,
-    CurrencyPipe],
+    CurrencyPipe,
+    Footer,
+    Header,
+  ],
   templateUrl: './payment-form.html',
   styleUrl: './payment-form.scss',
 })
 export class PaymentForm {
-
   // Datos personales
   nombre = '';
   tipoDocumento = '';
@@ -48,30 +53,26 @@ export class PaymentForm {
 
   resultado?: any;
 
-  constructor(
-    private simService: SimulatorService,
-    private pdfService: PdfGeneratorService
-  ) {}
+  constructor(private simService: SimulatorService, private pdfService: PdfGeneratorService) {}
 
   generarPlanilla() {
-
     // Construimos el objeto trabajador
     const trabajador = {
       nombre: this.nombre,
       tipoDocumento: this.tipoDocumento,
       documento: this.documento,
       email: this.correo,
-      telefono: this.telefono
+      telefono: this.telefono,
     };
 
     // Calculamos valores base
     const base = this.simService.simulate({
       ingresoMensual: this.ingresoMensual,
       porcentajeIBC: this.porcentajeIBC,
-      aplicarTopes: this.aplicarTopes
+      aplicarTopes: this.aplicarTopes,
     });
 
-    const riesgo = this.nivelesARL.find(n => n.nivel === this.nivelARL);
+    const riesgo = this.nivelesARL.find((n) => n.nivel === this.nivelARL);
     const porcEPS = 0.125;
     const porcPension = 0.16;
     const porcARL = riesgo ? riesgo.porcentaje : 0;
@@ -107,7 +108,12 @@ export class PaymentForm {
 
     this.resultado = planilla;
 
-    // Generamos el PDF con todos los datos
+    // ✅ Generamos el PDF
     this.pdfService.generarPlanilla(planilla);
+
+    // ✅ Guardamos la planilla COMPLETA en localStorage
+    const aportes = JSON.parse(localStorage.getItem('aportes') || '[]');
+    aportes.push(planilla);
+    localStorage.setItem('aportes', JSON.stringify(aportes));
   }
 }

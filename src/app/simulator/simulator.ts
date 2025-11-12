@@ -12,6 +12,8 @@ import { CurrencyPipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { riksType } from '../core/riskType';
 import { MatOptionModule } from '@angular/material/core';
+import { Router } from '@angular/router';
+import { Header } from '../shared/header/header';
 
 @Component({
   selector: 'app-simulator',
@@ -26,7 +28,8 @@ import { MatOptionModule } from '@angular/material/core';
     MatDividerModule,
     CurrencyPipe,
     CommonModule,
-    MatOptionModule
+    MatOptionModule,
+    Header
   ],
   templateUrl: './simulator.html',
   styleUrl: './simulator.scss',
@@ -39,9 +42,13 @@ export class Simulator {
   nivelRiesgo = 1;
   nivelesARL = riksType.nivelesARL;
 
+  urlCurrent='';
+
   resultado?: SimuladorOutput;
 
-  constructor(private simService: SimulatorService) {}
+  constructor(private router :  Router,private simService: SimulatorService) {
+    this.urlCurrent=router.url
+  }
 
   calcular() {
     this.resultado = this.simService.simulate({

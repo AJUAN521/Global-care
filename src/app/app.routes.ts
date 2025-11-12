@@ -5,6 +5,9 @@ import { Header } from './shared/header/header';
 import { Register } from './register/register';
 import { PaymentForm } from './private/payment-form/payment-form';
 import { Login } from './login/login';
+import { AuthGuard } from './guards/guard-guard';
+import { Dashboard } from './private/dashboard/dashboard';
+import { Simulator } from './simulator/simulator';
 
 export const routes: Routes = [
     {
@@ -17,7 +20,19 @@ export const routes: Routes = [
     },
     {
         path: 'payment-form',
-        component: PaymentForm
+        component: PaymentForm,
+        canActivate: [AuthGuard] 
+    }
+    ,
+     {
+        path: 'dashboard',
+        component: Dashboard,
+        canActivate: [AuthGuard] 
+    }
+    ,
+     {
+        path: 'simulator',
+        component: Simulator
     }
     ,
     {

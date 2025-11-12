@@ -1,3 +1,12 @@
+<app-header></app-header>
+<div class="container">
+    <h2>Realiza tu aporte</h2>
+
+    <p>Llena los datos y genera tu planilla de pago
+        
+    </p>
+</div>
+
 <mat-card class="form-card">
   <mat-card-title>Planilla de aportes del trabajador independiente</mat-card-title>
 
@@ -78,10 +87,13 @@
 <mat-card class="result-card" *ngIf="resultado as r">
   <mat-card-title>Resultado de aportes</mat-card-title>
   <mat-card-content>
-    <p><strong>Pensión (16%):</strong> {{ r.pension | currency:'COP':'symbol-narrow' }}</p>
-    <p><strong>EPS (12.5%):</strong> {{ r.eps | currency:'COP':'symbol-narrow' }}</p>
-    <p><strong>ARL:</strong> {{ r.arl | currency:'COP':'symbol-narrow' }}</p>
+    <p><strong>Pensión (16%):</strong> {{ r.aportes.pension | currency:'COP':'symbol-narrow' }}</p>
+    <p><strong>EPS (12.5%):</strong> {{ r.aportes.eps | currency:'COP':'symbol-narrow' }}</p>
+    <p><strong>ARL:</strong> {{ r.aportes.arl | currency:'COP':'symbol-narrow' }}</p>
     <mat-divider></mat-divider>
-    <p class="total"><strong>Total a pagar:</strong> {{ r.total | currency:'COP':'symbol-narrow' }}</p>
+    <p class="total"><strong>Total a pagar:</strong> {{ r.aportes.total | currency:'COP':'symbol-narrow' }}</p>
   </mat-card-content>
 </mat-card>
+
+
+<app-footer></app-footer>

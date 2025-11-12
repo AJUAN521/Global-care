@@ -1,1 +1,102 @@
-<p>dashboard works!</p>
+<app-header></app-header>
+<div class="dashboard-container">
+  <div class="header-dashboard">
+    <h1>Bienvenido, {{ usuario?.nombre }} 👋</h1>
+    </div>
+
+  <div class="cards-container">
+    <!-- Card 1 -->
+    <mat-card class="card card-aporte">
+      <img mat-card-image src="../../../assets/images/nuevoaporte.jpg" alt="Nuevo aporte">
+      <mat-card-content>
+        <h2>Realiza un nuevo aporte</h2>
+        <p>Genera tu planilla PILA fácilmente, calcula tus aportes y descarga tu comprobante en PDF.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="irANuevoAporte()">Generar aporte</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Card 2 -->
+    <mat-card class="card card-simulador">
+      <img mat-card-image src="../../../assets/images/calcular.jpg" alt="Simulador de aportes">
+      <mat-card-content>
+        <h2>Simulador de aportes</h2>
+        <p>Calcula tus aportes de pensión, EPS y ARL antes de generarlos oficialmente.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="irASimulador()">Abrir simulador</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Card 3 -->
+    <mat-card class="card card-info">
+      <mat-card-content>
+        <h2>¿Por qué elegir a Global Care?</h2>
+        <p>
+          En <strong>Global Care</strong> te ofrecemos una experiencia sencilla y confiable para gestionar tus aportes.
+          Nuestro sistema te permite simular, generar y descargar tus planillas con asesoría personalizada.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Historial de aportes -->
+  <div class="historial">
+    <h2>📋 Historial de aportes realizados</h2>
+
+    <table mat-table [dataSource]="aportes" class="mat-elevation-z2" *ngIf="aportes.length > 0">
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef>Fecha</th>
+        <td mat-cell *matCellDef="let a">{{ a.fechaGeneracion }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ingreso">
+        <th mat-header-cell *matHeaderCellDef>Ingreso</th>
+        <td mat-cell *matCellDef="let a">{{ a.ingresos.ingresoMensual | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ibc">
+        <th mat-header-cell *matHeaderCellDef>IBC</th>
+        <td mat-cell *matCellDef="let a">{{ a.ingresos.IBC_usado | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="pension">
+        <th mat-header-cell *matHeaderCellDef>Pensión</th>
+        <td mat-cell *matCellDef="let a">{{ a.aportes.pension | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="eps">
+        <th mat-header-cell *matHeaderCellDef>EPS</th>
+        <td mat-cell *matCellDef="let a">{{ a.aportes.eps | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="arl">
+        <th mat-header-cell *matHeaderCellDef>ARL</th>
+        <td mat-cell *matCellDef="let a">{{ a.aportes.arl | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef>Total</th>
+        <td mat-cell *matCellDef="let a">{{ a.aportes.total | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let a">
+          <button mat-button color="primary" (click)="descargarAporte(a)">
+  Descargar PDF
+</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <p *ngIf="aportes.length === 0" class="no-aportes">
+      Aún no tienes aportes registrados. Realiza tu primer aporte para verlo aquí.
+    </p>
+  </div>
+</div>
+<app-footer></app-footer>

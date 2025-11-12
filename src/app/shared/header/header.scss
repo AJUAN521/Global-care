@@ -1,0 +1,46 @@
+@use 'variables' as *;
+
+button{
+  cursor: pointer;
+}
+header {
+  background-color: $primary_color;
+  nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    .container-img {
+      width: 20%;
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    ul {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      li {
+        list-style: none;
+        a {
+          color: $white-smoke;
+          text-decoration: none;
+          border-radius: 1rem;
+          background-color: transparent;
+          &:hover {
+            background: $primary_color_hover;
+          }
+        }
+      }
+    }
+    button {
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.5rem 2rem;
+      margin: auto;
+      margin-right: 2rem !important;
+    }
+  }
+}

@@ -1,1 +1,27 @@
-<p>header works!</p>
+<header>
+  <nav>
+    <div class="container-img" routerLink="/">
+      <img src="../../assets/images/logoglobal.png" alt="" />
+    </div>
+    <!-- <ul>
+      <li class="navItem"><a href="">Como funciona</a></li>
+      <li class="navItem"><a href="">Beneficios</a></li>
+      <li class="navItem"><a href="">Aportes salud</a></li>
+      <li class="navItem"><a href="">Aportes pension</a></li>
+    </ul> -->
+
+    @if (urlCurrente == '/landing') {
+
+        <button (click)="loginRedirect()">Iniciar sesion</button>
+    }
+    @if (urlCurrente !== '/landing') {
+
+        <button (click)="logout()">Cerrar sesion</button>
+    }
+    @if (urlCurrente == '/payment-form' ||urlCurrente == '/simulator' ) {
+
+        <button (click)="goDashboard()">Dashboard</button>
+    }
+    <nav></nav>
+  </nav>
+</header>
